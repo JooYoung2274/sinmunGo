@@ -4,6 +4,9 @@ import { AppService } from "./app.service";
 
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
+import { Articles } from "./entities/articles.entity";
+import { Boards } from "./entities/boards.entity";
+import { Comments } from "./entities/comments.entity";
 
 @Module({
   imports: [
@@ -18,7 +21,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
           username: configService.get("DB_USERNAME"),
           password: configService.get("DB_PASSWORD"),
           database: configService.get("DB_DATABASE"),
-          entities: [],
+          entities: [Articles, Boards, Comments],
           autoLoadEntities: true,
           charset: "utf8mb4",
           synchronize: true,
