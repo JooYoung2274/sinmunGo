@@ -6,10 +6,7 @@ import { commentDeleteDto } from './dto/input/commentDelete.dto';
 
 @Injectable()
 export class CommentsService {
-    constructor(
-        @Inject(ICommentsRepository) private readonly commentsRepository: ICommentsRepository,
-        @Inject(IArticlesRepository) private readonly articlesRepository: IArticlesRepository,
-    ) {}
+    constructor(@Inject(ICommentsRepository) private readonly commentsRepository: ICommentsRepository) {}
 
     async commentCreate(body: commentCreateDto): Promise<any> {
         return await this.commentsRepository.commentCreate(body);

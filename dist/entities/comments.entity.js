@@ -15,31 +15,35 @@ const articles_entity_1 = require("./articles.entity");
 let Comments = class Comments {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)({ type: "int", name: "id" }),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ type: 'int', name: 'id' }),
     __metadata("design:type", Number)
 ], Comments.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)("varchar", { name: "content" }),
+    (0, typeorm_1.Column)('varchar', { name: 'content' }),
     __metadata("design:type", String)
 ], Comments.prototype, "content", void 0);
+__decorate([
+    (0, typeorm_1.Column)('varchar', { name: 'password' }),
+    __metadata("design:type", String)
+], Comments.prototype, "password", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
 ], Comments.prototype, "createdAt", void 0);
 __decorate([
-    (0, typeorm_1.Column)("int", { name: "ArticleId", nullable: true }),
+    (0, typeorm_1.Column)('int', { name: 'ArticleId', nullable: true }),
     __metadata("design:type", Number)
 ], Comments.prototype, "ArticleId", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => articles_entity_1.Articles, (Article) => Article.Comments, {
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
+    (0, typeorm_1.ManyToOne)(() => articles_entity_1.Articles, Article => Article.Comments, {
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
     }),
-    (0, typeorm_1.JoinColumn)([{ name: "ArticleId", referencedColumnName: "id" }]),
+    (0, typeorm_1.JoinColumn)([{ name: 'ArticleId', referencedColumnName: 'id' }]),
     __metadata("design:type", articles_entity_1.Articles)
 ], Comments.prototype, "Articles", void 0);
 Comments = __decorate([
-    (0, typeorm_1.Entity)("Comments")
+    (0, typeorm_1.Entity)('Comments')
 ], Comments);
 exports.Comments = Comments;
 //# sourceMappingURL=comments.entity.js.map

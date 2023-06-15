@@ -5,10 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Comments } from 'src/entities/comments.entity';
 import { ICommentsRepository } from './comments.interface';
 import { CommentsRepository } from './comments.repository';
-import { ArticlesModule } from '../articles/articles.module';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Comments]), ArticlesModule],
+    imports: [TypeOrmModule.forFeature([Comments])],
     controllers: [CommentsController],
     providers: [
         CommentsService,

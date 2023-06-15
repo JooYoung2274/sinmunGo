@@ -31,7 +31,12 @@ let ArticlesRepository = class ArticlesRepository {
         return await this.articlesRepository.save(body);
     }
     async articleList(boardId) {
-        return await this.articlesRepository.find({ where: { BoardId: boardId } });
+        return await this.articlesRepository
+            .createQueryBuilder('article')
+            .where('article.BoardId = :boardId', { boardId })
+            .leftJoin('article.Comments', 'comment')
+            .select(['article.id', 'article.title', 'article.createdAt', 'comment.id', 'comment.content'])
+            .getMany();
     }
     async articleUpdate(articleId, body) {
         const { title, content } = body;
