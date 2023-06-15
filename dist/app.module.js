@@ -16,6 +16,7 @@ const articles_entity_1 = require("./entities/articles.entity");
 const boards_entity_1 = require("./entities/boards.entity");
 const comments_entity_1 = require("./entities/comments.entity");
 const articles_module_1 = require("./domain/articles/articles.module");
+const comments_module_1 = require("./domain/comments/comments.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -26,21 +27,22 @@ AppModule = __decorate([
                 inject: [config_1.ConfigService],
                 useFactory: async (configService) => {
                     return {
-                        type: "mysql",
-                        host: "localhost",
+                        type: 'mysql',
+                        host: 'localhost',
                         port: 3306,
-                        username: configService.get("DB_USERNAME"),
-                        password: configService.get("DB_PASSWORD"),
-                        database: configService.get("DB_DATABASE"),
+                        username: configService.get('DB_USERNAME'),
+                        password: configService.get('DB_PASSWORD'),
+                        database: configService.get('DB_DATABASE'),
                         entities: [articles_entity_1.Articles, boards_entity_1.Boards, comments_entity_1.Comments],
                         autoLoadEntities: true,
-                        charset: "utf8mb4",
+                        charset: 'utf8mb4',
                         synchronize: true,
                         logging: true,
                     };
                 },
             }),
             articles_module_1.ArticlesModule,
+            comments_module_1.CommentsModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
