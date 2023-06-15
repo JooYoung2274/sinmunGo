@@ -20,7 +20,12 @@ export class ArticlesRepository implements IArticlesRepository {
     }
 
     async articleList(boardId: number): Promise<any> {
-        return await this.articlesRepository.find({ where: { BoardId: boardId } });
+        return await this.articlesRepository
+            .createQueryBuilder('article')
+            .where('article.BoardId = :boardId', { boardId })
+            .leftJoin('article.comments', 'comment')
+            .select(['article.id', 'article.title', 'article.createdAt', 'comment.id', 'comment.content'])
+            .getMany();
     }
 
     async articleUpdate(articleId: number, body: articleCreateDto): Promise<any> {

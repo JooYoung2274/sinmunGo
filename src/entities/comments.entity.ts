@@ -1,31 +1,27 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
-import { Articles } from "./articles.entity";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Articles } from './articles.entity';
 
-@Entity("Comments")
+@Entity('Comments')
 export class Comments {
-  @PrimaryGeneratedColumn({ type: "int", name: "id" })
-  id: number;
+    @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
+    id: number;
 
-  @Column("varchar", { name: "content" })
-  content: string;
+    @Column('varchar', { name: 'content' })
+    content: string;
 
-  @CreateDateColumn()
-  createdAt: Date;
+    @Column('varchar', { name: 'password' })
+    password: string;
 
-  @Column("int", { name: "ArticleId", nullable: true })
-  ArticleId: number;
+    @CreateDateColumn()
+    createdAt: Date;
 
-  @ManyToOne(() => Articles, (Article) => Article.Comments, {
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE",
-  })
-  @JoinColumn([{ name: "ArticleId", referencedColumnName: "id" }])
-  Articles: Articles;
+    @Column('int', { name: 'ArticleId', nullable: true })
+    ArticleId: number;
+
+    @ManyToOne(() => Articles, Article => Article.Comments, {
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+    })
+    @JoinColumn([{ name: 'ArticleId', referencedColumnName: 'id' }])
+    Articles: Articles;
 }
