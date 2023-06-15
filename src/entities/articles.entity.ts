@@ -1,39 +1,34 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from "typeorm";
-import { Comments } from "./comments.entity";
-import { Boards } from "./boards.entity";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Comments } from './comments.entity';
+import { Boards } from './boards.entity';
 
-@Entity("Articles")
+@Entity('Articles')
 export class Articles {
-  @PrimaryGeneratedColumn({ type: "int", name: "id" })
-  id: number;
+    @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
+    id: number;
 
-  @Column("varchar", { name: "title" })
-  title: string;
+    @Column('varchar', { name: 'title' })
+    title: string;
 
-  @Column("varchar", { name: "content" })
-  content: string;
+    @Column('varchar', { name: 'content' })
+    content: string;
 
-  @CreateDateColumn()
-  createdAt: Date;
+    @Column('varchar', { name: 'password' })
+    password: string;
 
-  @OneToMany(() => Comments, (comments) => comments.Articles)
-  Comments: Comments[];
+    @CreateDateColumn()
+    createdAt: Date;
 
-  @Column("int", { name: "BoardId", nullable: true })
-  BoardId: number;
+    @OneToMany(() => Comments, comments => comments.Articles)
+    Comments: Comments[];
 
-  @ManyToOne(() => Boards, (Board) => Board.Articles, {
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE",
-  })
-  @JoinColumn([{ name: "BoardId", referencedColumnName: "id" }])
-  Boards: Boards;
+    @Column('int', { name: 'BoardId', nullable: true })
+    BoardId: number;
+
+    @ManyToOne(() => Boards, Board => Board.Articles, {
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+    })
+    @JoinColumn([{ name: 'BoardId', referencedColumnName: 'id' }])
+    Boards: Boards;
 }

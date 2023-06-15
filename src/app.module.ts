@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { Articles } from "./entities/articles.entity";
 import { Boards } from "./entities/boards.entity";
 import { Comments } from "./entities/comments.entity";
+import { ArticlesModule } from "./domain/articles/articles.module";
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { Comments } from "./entities/comments.entity";
         };
       },
     }),
+    ArticlesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
