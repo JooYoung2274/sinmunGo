@@ -18,21 +18,26 @@ const articles_service_1 = require("./articles.service");
 const articleCreate_dto_1 = require("./dto/input/articleCreate.dto");
 const articleDelete_dto_1 = require("./dto/input/articleDelete.dto");
 const swagger_1 = require("@nestjs/swagger");
+const response_dto_1 = require("../../common/dto/response.dto");
 let ArticlesController = class ArticlesController {
     constructor(articlesService) {
         this.articlesService = articlesService;
     }
     async articleCreate(body) {
-        return await this.articlesService.articleCreate(body);
+        await this.articlesService.articleCreate(body);
+        return response_dto_1.ResponseOutPut.OK(null);
     }
     async articleList(boardId) {
-        return await this.articlesService.articleList(boardId);
+        const result = await this.articlesService.articleList(boardId);
+        return response_dto_1.ResponseOutPut.OK(result);
     }
     async articleUpdate(articleId, body) {
-        return await this.articlesService.articleUpdate(articleId, body);
+        await this.articlesService.articleUpdate(articleId, body);
+        return response_dto_1.ResponseOutPut.OK(null);
     }
     async articleDelete(articleId, body) {
-        return await this.articlesService.articleDelete(articleId, body);
+        await this.articlesService.articleDelete(articleId, body);
+        return response_dto_1.ResponseOutPut.OK(null);
     }
 };
 __decorate([
