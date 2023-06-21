@@ -9,13 +9,13 @@ async function bootstrap() {
         bufferLogs: true,
     });
     const config = new swagger_1.DocumentBuilder()
-        .setTitle("익명 게시판 API 문서")
-        .setDescription("API 문서 입니다")
-        .setVersion("1.0")
+        .setTitle('익명 게시판 API 문서')
+        .setDescription('API 문서 입니다')
+        .setVersion('1.0')
         .build();
     app.useGlobalFilters(new httpException_filter_1.HttpExceptionFilter());
     const document = swagger_1.SwaggerModule.createDocument(app, config);
-    swagger_1.SwaggerModule.setup("api", app, document);
+    swagger_1.SwaggerModule.setup('api', app, document);
     await app.listen(3000);
 }
 bootstrap();

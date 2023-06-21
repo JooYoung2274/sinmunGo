@@ -18,18 +18,22 @@ const comments_service_1 = require("./comments.service");
 const commentCreate_dto_1 = require("./dto/input/commentCreate.dto");
 const swagger_1 = require("@nestjs/swagger");
 const commentDelete_dto_1 = require("./dto/input/commentDelete.dto");
+const response_dto_1 = require("../../common/dto/response.dto");
 let CommentsController = class CommentsController {
     constructor(commentsService) {
         this.commentsService = commentsService;
     }
     async commentCreate(body) {
-        return await this.commentsService.commentCreate(body);
+        await this.commentsService.commentCreate(body);
+        return response_dto_1.ResponseOutPut.OK(null);
     }
     async commentUpdate(commentId, body) {
-        return await this.commentsService.commentUpdate(commentId, body);
+        await this.commentsService.commentUpdate(commentId, body);
+        return response_dto_1.ResponseOutPut.OK(null);
     }
     async commentDelete(commentId, body) {
-        return await this.commentsService.commentDelete(commentId, body);
+        await this.commentsService.commentDelete(commentId, body);
+        return response_dto_1.ResponseOutPut.OK(null);
     }
 };
 __decorate([
