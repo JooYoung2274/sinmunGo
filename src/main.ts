@@ -10,6 +10,12 @@ async function bootstrap() {
     app.enableShutdownHooks();
     app.useGlobalFilters(new HttpExceptionFilter());
 
+    app.enableCors({
+        // origin: true,
+        origin: true,
+        credentials: true,
+    });
+
     await app.listen(3000);
 }
 bootstrap();
