@@ -1,10 +1,10 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { IArticlesRepository } from './articles.interface';
 import { articleCreateDto } from './dto/input/articleCreate.dto';
 import { articleDeleteDto } from './dto/input/articleDelete.dto';
 
 @Injectable()
-export class ArticlesService {
+export class ArticlesService implements OnApplicationBootstrap {
     constructor(@Inject(IArticlesRepository) private readonly articlesRepository: IArticlesRepository) {}
 
     async articleCreate(body: articleCreateDto) {
@@ -36,5 +36,9 @@ export class ArticlesService {
         if (password !== isArticle.password) {
             throw new BadRequestException('비밀번호가 일치하지 않습니다.');
         }
+    }
+
+    onApplicationBootstrap() {
+        console.log('onApplicationBootstrap 입니다');
     }
 }
