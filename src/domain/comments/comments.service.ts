@@ -1,11 +1,11 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { ICommentsRepository } from './comments.interface';
 import { IArticlesRepository } from '../articles/articles.interface';
 import { commentCreateDto } from './dto/input/commentCreate.dto';
 import { commentDeleteDto } from './dto/input/commentDelete.dto';
 
 @Injectable()
-export class CommentsService {
+export class CommentsService implements OnModuleDestroy {
     constructor(@Inject(ICommentsRepository) private readonly commentsRepository: ICommentsRepository) {}
 
     async commentCreate(body: commentCreateDto): Promise<any> {
@@ -33,5 +33,8 @@ export class CommentsService {
         }
 
         return await this.commentsRepository.commentDelete(commentId);
+    }
+    onModuleDestroy() {
+        console.log('onModuleDestroy 입니다');
     }
 }

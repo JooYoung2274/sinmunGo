@@ -10,19 +10,19 @@ export class ArticlesRepository implements IArticlesRepository {
     constructor(@InjectRepository(Articles) private articlesRepository: Repository<Articles>) {}
 
     async articleCreate(body: articleCreateDto): Promise<any> {
-        const { title, content, password, BoardId } = body;
+        const { title, content, password, boardId } = body;
         const newArticle = this.articlesRepository.create();
         newArticle.title = title;
         newArticle.content = content;
         newArticle.password = password;
-        newArticle.BoardId = BoardId;
+        newArticle.boardId = boardId;
         return await this.articlesRepository.save(body);
     }
 
     async articleList(boardId: number): Promise<any> {
         return await this.articlesRepository
             .createQueryBuilder('article')
-            .where('article.BoardId = :boardId', { boardId })
+            .where('article.boardId = :boardId', { boardId })
             .leftJoin('article.Comments', 'comment')
             .select(['article.id', 'article.title', 'article.createdAt', 'comment.id', 'comment.content'])
             .getMany();

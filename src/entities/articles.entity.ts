@@ -22,13 +22,13 @@ export class Articles {
     @OneToMany(() => Comments, comments => comments.Articles)
     Comments: Comments[];
 
-    @Column('int', { name: 'BoardId', nullable: true })
-    BoardId: number;
+    @Column('int', { name: 'boardId', nullable: true })
+    boardId: number;
 
     @ManyToOne(() => Boards, Board => Board.Articles, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
     })
-    @JoinColumn([{ name: 'BoardId', referencedColumnName: 'id' }])
+    @JoinColumn([{ name: 'boardId', referencedColumnName: 'id' }])
     Boards: Boards;
 }

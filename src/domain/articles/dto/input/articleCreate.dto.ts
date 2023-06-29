@@ -15,7 +15,7 @@ export class articleCreateDto {
     @IsNumber()
     @IsNotEmpty()
     @ApiProperty({ example: 1, description: '게시판 카테고리 번호', required: true })
-    BoardId: number;
+    boardId: number;
 
     @IsString()
     @IsNotEmpty()

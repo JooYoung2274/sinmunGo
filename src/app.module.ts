@@ -26,7 +26,7 @@ import { CommentsModule } from './domain/comments/comments.module';
                     entities: [Articles, Boards, Comments],
                     autoLoadEntities: true,
                     charset: 'utf8mb4',
-                    synchronize: true,
+                    synchronize: false,
                     logging: true,
                 };
             },
