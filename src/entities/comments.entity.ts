@@ -18,7 +18,7 @@ export class Comments {
     @Column('int', { name: 'ArticleId', nullable: true })
     ArticleId: number;
 
-    @ManyToOne(() => Articles, Article => Article.Comments, {
+    @ManyToOne(() => Articles, Article => Article.comments, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
     })

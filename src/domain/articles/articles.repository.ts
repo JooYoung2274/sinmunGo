@@ -23,7 +23,7 @@ export class ArticlesRepository implements IArticlesRepository {
         return await this.articlesRepository
             .createQueryBuilder('article')
             .where('article.boardId = :boardId', { boardId })
-            .leftJoin('article.Comments', 'comment')
+            .leftJoin('article.comments', 'comment')
             .select(['article.id', 'article.title', 'article.createdAt', 'comment.id', 'comment.content'])
             .getMany();
     }
