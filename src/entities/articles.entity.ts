@@ -20,12 +20,12 @@ export class Articles {
     createdAt: Date;
 
     @OneToMany(() => Comments, comments => comments.Articles)
-    Comments: Comments[];
+    comments: Comments[];
 
     @Column('int', { name: 'boardId', nullable: true })
     boardId: number;
 
-    @ManyToOne(() => Boards, Board => Board.Articles, {
+    @ManyToOne(() => Boards, Board => Board.articles, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
     })
